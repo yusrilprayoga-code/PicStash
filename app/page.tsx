@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getImages } from "./lib/data";
-import Card from "./components/card";
 import ImageSearch from "./components/image-search";
 import { HeroSection } from "./components/hero-section";
 import Navbar from "./components/navbar";
