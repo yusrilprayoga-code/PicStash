@@ -21,18 +21,18 @@ const UploadSchema = z.object({
     }),
 });
 
-// const EditSchema = z.object({
-//   title: z.string().min(1),
-//   image: z
-//     .instanceof(File)
-//     .refine((file) => file.size === 0 || file.type.startsWith("image/"), {
-//       message: "Only images are allowed",
-//     })
-//     .refine((file) => file.size < 4000000, {
-//       message: "Image must less than 4MB",
-//     })
-//     .optional(),
-// });
+const EditSchema = z.object({
+  title: z.string().min(1),
+  image: z
+    .instanceof(File)
+    .refine((file) => file.size === 0 || file.type.startsWith("image/"), {
+      message: "Only images are allowed",
+    })
+    .refine((file) => file.size < 4000000, {
+      message: "Image must less than 4MB",
+    })
+    .optional(),
+});
 
 export const uploadImage = async (prevState: unknown, formdata: FormData) => {
   const validateFields = UploadSchema.safeParse(
@@ -69,52 +69,52 @@ export const uploadImage = async (prevState: unknown, formdata: FormData) => {
 };
 
 // Update image
-// export const updateImage = async (
-//   id: string,
-//   prevState: unknown,
-//   formData: FormData
-// ) => {
-//   const validatedFields = EditSchema.safeParse(
-//     Object.fromEntries(formData.entries())
-//   );
+export const updateImage = async (
+  id: string,
+  prevState: unknown,
+  formData: FormData
+) => {
+  const validatedFields = EditSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
 
-//   if (!validatedFields.success) {
-//     return {
-//       error: validatedFields.error.flatten().fieldErrors,
-//     };
-//   }
+  if (!validatedFields.success) {
+    return {
+      error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
 
-//   const data = await getImageById(id);
-//   if (!data) return { message: "No Data Found" };
+  const data = await getImageById(id);
+  if (!data) return { message: "No Data Found" };
 
-//   const { title, image } = validatedFields.data;
-//   let imagePath;
-//   if (!image || image.size <= 0) {
-//     imagePath = data.image;
-//   } else {
-//     await del(data.image);
-//     const { url } = await put(image.name, image, {
-//       access: "public",
-//       multipart: true,
-//     });
-//     imagePath = url;
-//   }
+  const { title, image } = validatedFields.data;
+  let imagePath;
+  if (!image || image.size <= 0) {
+    imagePath = data.image;
+  } else {
+    await del(data.image);
+    const { url } = await put(image.name, image, {
+      access: "public",
+      multipart: true,
+    });
+    imagePath = url;
+  }
 
-//   try {
-//     await prisma.upload.update({
-//       data: {
-//         title,
-//         image: imagePath,
-//       },
-//       where: { id },
-//     });
-//   } catch (error) {
-//     return { message: "Failed to update data" };
-//   }
+  try {
+    await prisma.upload.update({
+      data: {
+        title,
+        image: imagePath,
+      },
+      where: { id },
+    });
+  } catch (error) {
+    return { message: "Failed to update data" };
+  }
 
-//   revalidatePath("/");
-//   redirect("/");
-// };
+  revalidatePath("/");
+  redirect("/");
+};
 
 // Delete Image
 export const deleteImage = async (id: string) => {
