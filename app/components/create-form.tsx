@@ -3,7 +3,7 @@
 import React from "react";
 import { uploadImage } from "../lib/actions";
 import { useFormState } from "react-dom";
-import ButtonValidate from "./button";
+import { SubmitButton } from "./button";
 
 const CreateForm = () => {
   const [state, formAction] = useFormState(uploadImage, null);
@@ -35,7 +35,7 @@ const CreateForm = () => {
         </div>
       </div>
       <div className="mb-4 pt-4">
-        <ButtonValidate />
+        <SubmitButton label="upload" />
       </div>
     </form>
   );
