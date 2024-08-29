@@ -24,10 +24,21 @@ const Footer = () => {
 
         {/* Right Section: Footer Links */}
         <div className="flex space-x-6 mt-4 md:mt-0">
-          <Link href="/about" className="hover:text-white text-sm">About</Link>
-          <Link href="/contact" className="hover:text-white text-sm">Contact</Link>
-          <Link href="/terms" className="hover:text-white text-sm">Terms</Link>
-          <Link href="/privacy" className="hover:text-white text-sm">Privacy Policy</Link>
+          <Link href="/" className="hover:text-white text-sm">
+            Home
+          </Link>
+          <Link href="/about" className="hover:text-white text-sm">
+            About
+          </Link>
+          <Link href="/contact" className="hover:text-white text-sm">
+            Contact
+          </Link>
+          <Link href="/terms" className="hover:text-white text-sm">
+            Terms
+          </Link>
+          <Link href="/privacy" className="hover:text-white text-sm">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>
