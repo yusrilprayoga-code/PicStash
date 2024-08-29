@@ -26,16 +26,16 @@ export const SubmitButton = ({ label }: { label: string }) => {
   );
 };
 
-// export const EditButton = ({ id }: { id: string }) => {
-//   return (
-//     <Link
-//       href={`edit/${id}`}
-//       className="py-3 text-sm bg-blue-500 rounded-bl-md w-full hover:bg-blue-300 text-center"
-//     >
-//       Edit
-//     </Link>
-//   );
-// };
+export const EditButton = ({ id }: { id: string }) => {
+  return (
+    <Link
+      href={`edit/${id}`}
+      className="py-3 text-sm bg-blue-500 rounded-bl-md w-full hover:bg-blue-300 text-center"
+    >
+      Edit
+    </Link>
+  );
+};
 
 export const DeleteButton = ({ id }: { id: string }) => {
   const deleteImageWithId = deleteImage.bind(null, id);
