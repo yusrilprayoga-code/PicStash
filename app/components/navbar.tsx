@@ -1,4 +1,10 @@
 import Link from "next/link";
+import {
+    SignInButton,
+    SignedIn,
+    SignedOut,
+    UserButton
+  } from '@clerk/nextjs'
 
 const Navbar = () => {
   return (
@@ -16,6 +22,12 @@ const Navbar = () => {
           <Link href="/" className="text-gray-600 hover:text-gray-900">
             Gallery
           </Link>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </nav>

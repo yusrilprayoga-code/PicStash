@@ -10,7 +10,6 @@ export default async function Home() {
 
   return (
     <div>
-      <Navbar />
       <section className="h-[60vh]
         bg-cover bg-center bg-no-repeat flex items-center justify-center text-white
       ">
