@@ -7,6 +7,8 @@
     "build": "prisma generate && <actual-build-command>",
     "start": "next start",
     "lint": "next lint",
+    "prisma": "npx prisma",
+    "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },
   "dependencies": {
