@@ -1,15 +1,16 @@
-import React from 'react'
-import CreateForm from '../components/create-form'
+import { authOptions } from "../lib/auth";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import CreatePage from "../components/createPage";
 
-const CreatePage = () => {
-  return (
-    <div className='min-h-screen flex items-center justify-center bg-slate-100'>
-        <div className='p-8 bg-white rounded-lg shadow-lg'>
-            <h1 className='text-2xl font-semibold text-slate-800 text-center'>Upload Image</h1>
-            <CreateForm />
-        </div>
-    </div>
-  )
+export default async function DashboardPage() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return (
+      redirect("/api/auth/signin")
+    );
+  }
+
+  return <CreatePage />;
 }
-
-export default CreatePage
