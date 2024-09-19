@@ -132,3 +132,37 @@ export const deleteImage = async (id: string) => {
 
   revalidatePath("/");
 };
+
+
+export const downloadImage = async (id: string) => {
+  const data = await getImageById(id);
+  if (!data) return { message: "No data found" };
+
+  const imageUrl = data.image;
+  const response = await fetch(imageUrl);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch image");
+  }
+
+  const contentType = response.headers.get("content-type");
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+
+  let fileExtension = "jpg";
+  if (contentType) {
+    if (contentType.includes("png")) fileExtension = "png";
+    else if (contentType.includes("gif")) fileExtension = "gif";
+    else if (contentType.includes("webp")) fileExtension = "webp";
+  }
+
+  const fileName = `${data.title}.${fileExtension}`;
+
+  return new Response(buffer, {
+    headers: {
+      "Content-Disposition": `attachment; filename="${fileName}"`,
+      "Content-Type": contentType || "application/octet-stream",
+    },
+  });
+};
+
