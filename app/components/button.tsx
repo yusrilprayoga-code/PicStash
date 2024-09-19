@@ -47,6 +47,8 @@ export const DeleteButton = ({ id }: { id: string }) => {
     if (confirmed) {
       await deleteImageWithId();
     }
+
+    window.location.reload();
   };
 
   return (
