@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import { DeleteButton, DownloadImage, EditButton } from "./button";
+import { DeleteButton, DownloadImage, EditButton, LikeButton } from "./button";
 import type { upload } from "@prisma/client";
 import { Heart, MessageCircle } from 'lucide-react';
 
@@ -26,10 +26,7 @@ const Card = ({ data }: { data: upload }) => {
           {data.title}
         </h1>
         <div className="flex items-center justify-between text-gray-600 mb-3">
-          <div className="flex items-center space-x-2">
-            <Heart size={18} />
-            <span>142</span>
-          </div>
+          <LikeButton count={0} />
           <div className="flex items-center space-x-2">
             <MessageCircle size={18} />
             <span>23</span>

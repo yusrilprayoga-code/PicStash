@@ -4,7 +4,8 @@ import { useFormStatus } from "react-dom";
 import { clsx } from "clsx";
 import Link from "next/link";
 import { deleteImage, downloadImage } from "../lib/actions";
-import { Edit, Trash2, Download } from 'lucide-react';
+import { Edit, Trash2, Download, Heart } from 'lucide-react';
+import React from "react";
 
 export const SubmitButton = ({ label }: { label: string }) => {
   const { pending } = useFormStatus();
@@ -93,5 +94,27 @@ export const DownloadImage = ({ id }: { id: string }) => {
         Download
       </button>
     </form>
+  );
+};
+
+// count likes
+export const LikeButton = ({ count }: { count: number }) => {
+  const [likes, setLikes] = React.useState(count);
+
+  //handle like and heart
+  const [heartColor, setHeartColor] = React.useState("text-gray-600");
+  const handleLike = () => {
+    setLikes(likes + 1);
+    setHeartColor("text-red-500");
+  };
+
+  return (
+    <button
+      onClick={handleLike}
+      className="flex items-center space-x-2 text-gray-600"
+    >
+      <Heart size={18} className={heartColor} />
+      <span>{likes}</span>
+    </button>
   );
 };

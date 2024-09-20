@@ -56,7 +56,7 @@ export const uploadImage = async (prevState: unknown, formdata: FormData) => {
       data: {
         title,
         image: url,
-      },
+      }, 
     })
   } catch (error) {
       throw new Error("Failed to upload image");
@@ -165,4 +165,5 @@ export const downloadImage = async (id: string) => {
     },
   });
 };
+
 
