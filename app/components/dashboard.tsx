@@ -4,6 +4,7 @@ import ImageSearch from "./image-search";
 import { HeroSection } from "./hero-section";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import PriceList from "./pricelist";
 
 export default async function Dashboard() {
   const images = await getImages();
@@ -16,6 +17,7 @@ export default async function Dashboard() {
       ">
         <HeroSection />
       </section>
+        <PriceList />
 
       <section className="max-w-screen-lg mx-auto py-14 mt-20">
         <div className="flex items-end justify-between mb-8">
