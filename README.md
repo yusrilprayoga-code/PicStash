@@ -33,8 +33,6 @@ here's a short summary of Picstash
 
 ## Installation
 
-## Installation
-
 Follow these steps to set up the project with Next.js and Prisma ORM:
 
 1. **Clone the repository**
